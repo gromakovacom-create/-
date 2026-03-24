@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сцена 1</title>
+    <title>Сцена 1 — Бал</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="fade-in">
@@ -14,20 +14,24 @@
 
     <div class="text">
         <p>
-            Бал у лорда Мэддона. Ты — Кларисса, 18 лет, в голубом платье, которое мама назвала "последним шансом выйти замуж".
+            Бал в поместье. Свет свечей, шелка платьев, запах роз.
             <br><br>
-            Он заметил тебя. Сир Уиллоуби. Самый желанный холостяк графства. Богат, красив, обаятелен.
+            К тебе подходит сэр Уиллоуби Паттерн — богат, красив, обаятелен. 
+            Он говорит о тебе как о «самой прекрасной девушке в зале». 
+            Его взгляд не отрывается от твоего лица.
             <br><br>
-            Подходит. Говорит о своих поместьях, конях, путешествиях. Не спрашивает о тебе. Но все девушки завидуют.
+            Но он не спрашивает, любишь ли ты танцевать. 
+            Не спрашивает, что ты читаешь. 
+            Он говорит о тебе. О своих чувствах. О своих планах.
             <br><br>
             Что делаешь?
         </p>
     </div>
 
     <div class="choices">
-        <a href="scene2a.html" class="btn red">Думаю: "Наверное, он волнуется"</a>
-        <a href="scene2b.html" class="btn gray">Улыбаюсь и молчу</a>
-        <a href="scene2v.html" class="btn gold">Спрашиваю: "А что вам нравится в людях?"</a>
+        <a href="scene2a.html" class="btn red">Увлечена — он же идеал</a>
+        <a href="scene2b.html" class="btn red">Смущена, но молчу</a>
+        <a href="scene2v.html" class="btn gold">Спрашиваю о нём самом</a>
     </div>
 
 </div>
@@ -41,6 +45,7 @@ document.querySelectorAll("a").forEach(link => {
             window.location = this.href;
         }, 400);
     });
+});
 </script>
 
 </body>
