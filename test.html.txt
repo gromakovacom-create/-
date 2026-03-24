@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест: Кто ты из «Эгоиста»?</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .test-container { max-width: 700px; margin: 0 auto; padding: 20px; }
+        .question { font-size: 1.3rem; margin-bottom: 20px; color: #f5f5f5; }
+        .answers { display: flex; flex-direction: column; gap: 10px; }
+        .answer-btn { 
+            background: #1a1a1a; 
+            border: 2px solid #444; 
+            color: #f5f5f5; 
+            padding: 15px; 
+            border-radius: 8px; 
+            cursor: pointer;
+            text-align: left;
+        }
+        .answer-btn:hover { border-color: #FFD700; background: #2a2a2a; }
+        .hidden { display: none; }
+        .result-card { text-align: center; padding: 40px; }
+        .result-image { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #FFD700; }
+        .result-title { color: #FFD700; font-size: 2rem; margin: 20px 0; }
+    </style>
+</head>
+<body class="fade-in">
+
+<div class="test-container">
+    
+    <!-- Старт -->
+    <div id="startScreen">
+        <h1 style="color: #FFD700; text-align: center;">Кто ты из «Эгоиста»?</h1>
+        <p style="text-align: center; color: #aaa; margin-bottom: 30px;">
+            Пройди тест и узнай, какой персонаж романа скрывается в тебе
+        </p>
+        <div style="text-align: center;">
+            <button class="btn gold" onclick="startTest()" style="font-size: 1.2rem; padding: 15px 30px;">
+                Начать тест
+            </button>
+            <br><br>
+            <a href="index.html" class="btn gray">← Вернуться к игре</a>
+        </div>
+    </div>
+    
+    <!-- Вопрос -->
+    <div id="quizScreen" class="hidden">
+        <div class="question" id="questionText"></div>
+        <div class="answers" id="answersContainer"></div>
+    </div>
+    
+    <!-- Результат -->
+    <div id="resultScreen" class="hidden result-card">
+        <img id="resultImage" src="" class="result-image">
+        <h2 class="result-title" id="resultTitle"></h2>
+        <p id="resultDescription" style="color: #ccc; line-height: 1.6;"></p>
+        <br>
+        <a href="index.html" class="btn gold">Играть в «Эгоиста»</a>
+        <button class="btn gray" onclick="restartTest()">Пройти ещё раз</button>
+    </div>
+
+</div>
+
+<script>
+const questions = [
+    {
+        q: "На балу к вам подходит незнакомец и рассказывает о себе. Ваши действия?",
+        a: [
+            { text: "Слушаю, он же выбрал меня!", w: 0, c: 2, v: 1 },
+            { text: "Улыбаюсь и жду, когда уйти", w: 1, c: 3, v: 0 },
+            { text: "Задаю вопросы, узнаю его", w: 0, c: 1, v: 3 },
+            { text: "Перехожу к себе — мне тоже есть что сказать", w: 3, c: 0, v: 0 }
+        ]
+    },
+    {
+        q: "Друг жалуется на проблемы. Что вы делаете?",
+        a: [
+            { text: "Даю советы из своего опыта", w: 3, c: 0, v: 1 },
+            { text: "Слушаю молча", w: 0, c: 2, v: 2 },
+            { text: "Спрашиваю: «Что ты сам хочешь?»", w: 0, c: 1, v: 3 },
+            { text: "Перевожу на свои проблемы", w: 2, c: 1, v: 0 }
+        ]
+    },
+    {
+        q: "Вас критикуют за ваш выбор. Реакция?",
+        a: [
+            { text: "«Вы не понимаете мои мотивы»", w: 3, c: 1, v: 0 },
+            { text: "Молчу и переживаю", w: 0, c: 3, v: 1 },
+            { text: "Спрашиваю, почему так считают", w: 0, c: 1, v: 3 },
+            { text: "Соглашаюсь, чтобы не портить отношения", w: 0, c: 2, v: 2 }
+        ]
+    },
+    {
+        q: "Ваш идеальный вечер?",
+        a: [
+            { text: "Приём, где все восхищаются мной", w: 3, c: 0, v: 0 },
+            { text: "Тихий вечер с книгой", w: 0, c: 3, v: 2 },
+            { text: "Разговор по душам", w: 0, c: 2, v: 3 },
+            { text: "Помогаю другу", w: 0, c: 1, v: 3 }
+        ]
+    },
+    {
+        q: "Что для вас любовь?",
+        a: [
+            { text: "Найти идеального партнёра", w: 3, c: 1, v: 0 },
+            { text: "Готовность терпеть ради близкого", w: 0, c: 3, v: 0 },
+            { text: "Принятие другого таким, какой он есть", w: 0, c: 1, v: 3 },
+            { text: "Взаимное восхищение", w: 2, c: 1, v: 2 }
+        ]
+    }
+];
+
+const results = {
+    w: { name: "Сир Уиллоуби Паттерн", img: "scene1.jpg", desc: "Вы — блестящий эгоист. Харизматичны, обаятельны, уверены в своём превосходстве. Ваши red flags видны из космоса!" },
+    c: { name: "Клара Миддлтон", img: "scene2.jpg", desc: "Вы — жертва обстоятельств и собственной доброты. Терпеливы, мягки, но забываете любить себя." },
+    v: { name: "Вернон Уитфорд", img: "scene3.jpg", desc: "Вы — редкая жемчужина. Умеете слушать, поддерживать, не осуждать. Вы спасаете тех, кто тонет в чужих эго." }
+};
+
+let current = 0;
+let scores = { w: 0, c: 0, v: 0 };
+
+function startTest() {
+    document.getElementById('startScreen').classList.add('hidden');
+    document.getElementById('quizScreen').classList.remove('hidden');
+    showQuestion();
+}
+
+function showQuestion() {
+    const q = questions[current];
+    document.getElementById('questionText').textContent = `Вопрос ${current + 1} из ${questions.length}: ${q.q}`;
+    
+    const container = document.getElementById('answersContainer');
+    container.innerHTML = '';
+    
+    q.a.forEach((ans, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer-btn';
+        btn.textContent = ans.text;
+        btn.onclick = () => answer(i);
+        container.appendChild(btn);
+    });
+}
+
+function answer(i) {
+    const ans = questions[current].a[i];
+    scores.w += ans.w;
+    scores.c += ans.c;
+    scores.v += ans.v;
+    current++;
+    
+    if (current < questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById('quizScreen').classList.add('hidden');
+    document.getElementById('resultScreen').classList.remove('hidden');
+    
+    let winner = 'c';
+    if (scores.w > scores.c && scores.w > scores.v) winner = 'w';
+    else if (scores.v > scores.c && scores.v > scores.w) winner = 'v';
+    
+    const r = results[winner];
+    document.getElementById('resultImage').src = r.img;
+    document.getElementById('resultTitle').textContent = r.name;
+    document.getElementById('resultDescription').textContent = r.desc;
+}
+
+function restartTest() {
+    current = 0;
+    scores = { w: 0, c: 0, v: 0 };
+    document.getElementById('resultScreen').classList.add('hidden');
+    document.getElementById('startScreen').classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
