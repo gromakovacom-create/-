@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сцена 2В</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene3.jpg" alt="Вернон" class="scene-img">
+
+    <div class="text">
+        <p>
+            Уиллоуби замолчал. Не ожидал вопроса о себе. Поморщился. Ответил отрывисто и снова начал о себе.
+            <br><br>
+            Но ты заметила: он не умеет слушать.
+            <br><br>
+            На следующем балу ты избегаешь его. Сидишь у окна. Подходит Вернон — простой доктор, друг детства. Не богат, не красавец.
+            <br><br>
+            Он спрашивает: "Ты выглядишь уставшей. Что случилось?"
+            <br><br>
+            Что делаешь?
+        </p>
+    </div>
+
+    <div class="choices">
+        <a href="scene3b.html" class="btn gold">Рассказываю правду про Уиллоуби</a>
+        <a href="scene2a.html" class="btn red">Отмахиваюсь: "Ничего"</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>

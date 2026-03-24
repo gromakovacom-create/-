@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сцена 3Б</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene3.jpg" alt="Разговор с Верноном" class="scene-img">
+
+    <div class="text">
+    <p>
+        Вернон слушает. Не перебивает. Не советует. Спросил: "А что ты сама хочешь?"
+        <br><br>
+        Ты не помнишь, когда последний раз думала об этом.
+        <br><br>
+        Вернон: "Я не богат. Но я спрошу каждый день: что ты хочешь?"
+        <br><br>
+        Уиллоуби прислал письмо: "Вернись, я прощу твою глупость".
+        <br><br>
+        Что делаешь?
+    </p>
+</div>
+    </div>
+
+    <div class="choices">
+        <a href="ending_good.html" class="btn gold">Выбираю Вернона — или одиночество, но не клетку</a>
+<a href="ending_bad.html" class="btn red">Возвращаюсь к Уиллоуби — вдруг изменится</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>

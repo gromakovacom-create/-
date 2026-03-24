@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сцена 2А</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сцена 2А</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene2.jpg" alt="Ухаживания" class="scene-img">
+
+    <div class="text">
+        <p>
+            Прошла неделя. Уиллоуби — идеальный кавалер. Цветы, комплименты, поэзия.
+            <br><br>
+            Но всё о нём: его чувства, его страдания, его планы. Когда ты начинаешь говорить, он перебивает или переводит на себя.
+            <br><br>
+            Что делаешь?
+        </p>
+    </div>
+
+    <div class="choices">
+        <a href="scene3a.html" class="btn red">Рада вниманию, молчу</a>
+        <a href="scene3a.html" class="btn red">Думаю: "Потом привыкнет"</a>
+        <a href="scene2v.html" class="btn gold">Говорю: "Я тоже хочу быть услышанной"</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сцена 3А</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene4.jpg" alt="Золотая клетка" class="scene-img">
+
+    <div class="text">
+        <p>
+            Три месяца брака. Уиллоуби контролирует каждый шаг. Куда ходишь, с кем встречаешься, что читаешь.
+            <br><br>
+            "Я лучше знаю, что тебе нужно". Твои подруги — "плохое влияние". Твои книги — "глупости".
+            <br><br>
+            Ты в золотой клетке. Роскошь вокруг, но дышать нечем.
+            <br><br>
+            Что делаешь?
+        </p>
+    </div>
+
+    <div class="choices">
+        <a href="ending_bad.html" class="btn red">Стараюсь угождать, может, он остынет</a>
+        <a href="ending_bad.html" class="btn red">Спорю, но сдаюсь под давлением</a>
+        <a href="ending_good.html" class="btn gold">Планирую бегство</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Золотая клетка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene4.jpg" alt="Плохая концовка" class="scene-img">
+
+    <div class="text">
+        <p>
+            Ты в золотой клетке. Как героиня романа — но у тебя нет автора, который спасёт финалом.
+            <br><br>
+            Мередит написал "Эгоист" в 1879 году. Первый роман о психологическом насилии. О red flags за 150 лет до TikTok.
+            <br><br>
+            Прочитай книгу. Узнай, как это могло закончиться иначе.
+        </p>
+    </div>
+
+    <div class="choices">
+        <a href="index.html" class="btn gray">Начать заново</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сцена 2Б</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene2.jpg" alt="Молчание" class="scene-img">
+
+    <div class="text">
+        <p>
+            Ты улыбаешься и молчишь. Уиллоуби принимает это за согласие.
+            <br><br>
+            Он рассказывает о себе ещё час. Ты узнаёшь о его конях, собаках, друзьях. О тебе он не спрашивает.
+            <br><br>
+            Вечер заканчивается. Он уверен, что вы помолвлены. Ты не уверена ни в чём.
+            <br><br>
+            Что делаешь?
+        </p>
+    </div>
+
+    <div class="choices">
+        <a href="scene2a.html" class="btn red">Встречаюсь с ним снова</a>
+        <a href="scene2v.html" class="btn gold">Ищу Вернона, друга детства</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>

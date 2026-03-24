@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свобода</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in">
+
+<div class="container">
+
+    <img src="scene3.jpg" alt="Хорошая концовка" class="scene-img">
+
+    <div class="text">
+        <p>
+            Ты свободна. Как Кларисса должна была быть.
+            <br><br>
+            Мередит писал для тех, кто выбирает. Спойлер: в книге она выбрала иначе. Узнай почему — прочитай "Эгоист".
+            <br><br>
+            1879 год. Первый психологический роман о нарциссизме. Актуально как никогда.
+        </p>
+    </div>
+
+    <div class="choices">
+        <a href="index.html" class="btn gold">Пройти ещё раз</a>
+    </div>
+
+</div>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+            window.location = this.href;
+        }, 400);
+    });
+</script>
+
+</body>
+</html>
